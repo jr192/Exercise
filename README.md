@@ -12,7 +12,7 @@ everything goes by smoothly.
 Setup to run api:
  - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
  - In Repository root run: 
- 1) remove data diretory and run `docker compose build` 
+ 1) remove data diretory and run `cp dev.env .env` && `docker compose build` 
  2) `docker compose up —wait db` 
  3) `docker compose up` 
  4) open a new terminal window and run `docker-compose exec web python manage.py makemigrations --noinput` and `docker-compose exec web python manage.py migrate --noinput` 
