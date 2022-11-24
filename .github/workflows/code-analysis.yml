@@ -10,5 +10,6 @@ steps:
     pip install -r requirements.txt
 - name: Test with pytest
   run: |
-    cp dev.env .env
-    ./manage.py test
+    pip install pytest
+    pip install pytest-cov
+    pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
