@@ -1,0 +1,29 @@
+name: Static Analysis
+
+on:
+  push:
+    paths:
+      - '*.py'
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  black:
+    name: Black linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.0
+
+      - name: Install black
+        run: python3 -m pip install black
+
+      - name: Run black
+        run: black . --check

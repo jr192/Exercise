@@ -1,0 +1,23 @@
+name: Code Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-testing:
+    name: Unit Testing on Github Action
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run unit tests
+        run: |
+          cp dev.env .env && \
+          docker-compose run --name pvs-connector-runner pvs-connector sh -c "coverage run manage.py test --no-input
