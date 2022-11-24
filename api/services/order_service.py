@@ -7,6 +7,7 @@ class OrderService:
     def create_orders(cls, order_data):
         customers = []
         orders = []
+
         for customer in order_data:
             customers.append(Customer(pk=customer["customer"]))
 
