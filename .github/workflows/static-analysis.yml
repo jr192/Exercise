@@ -4,9 +4,9 @@ on:
   push:
     paths:
       - '*.py'
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   black:
