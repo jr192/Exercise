@@ -21,6 +21,6 @@ Setup to run api:
 
 ### SQL UML DATABASE
 This is how I would design my database.
-![](../../../Desktop/uml.png)
+![](https://drive.google.com/file/d/1nU7xj-039mig1jsYmjuXr-NSExogDlex/view?usp=sharing)
 
 About indexes, I would add on the columns where I use more the WHERE(FILTER) or JOIN(SELECTED_RELATED) operations to improve the query performance;
