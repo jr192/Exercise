@@ -34,8 +34,8 @@ class HandleFile:
                     seen.add(line)
                     validated_data.append(
                         {
-                            "barcode": line.decode("utf-8").split(",")[0],
-                            "order_id": line.decode("utf-8").split(",")[1].strip(),
+                            "barcode": int(line.decode("utf-8").split(",")[0]),
+                            "order_id": int(line.decode("utf-8").split(",")[1].strip()),
                         }
                     )
 
