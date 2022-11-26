@@ -20,7 +20,7 @@ def order_view(request):
         if form.is_valid():
             order_data = HandleFile.handle_order_file(request.FILES["file"])
             OrderService().create_orders(order_data)
-            return JsonResponse({"msg": "import"}, status=200)
+            return JsonResponse({"msg": "Import successfully."}, status=200)
 
 
 @csrf_exempt
@@ -30,19 +30,23 @@ def barcode_view(request):
         if form.is_valid():
             barcode_data = HandleFile.handle_barcode_file(request.FILES["file"])
             BarcodeService.create_barcodes(barcode_data)
-            return JsonResponse({"msg": "import"}, status=200)
+            return JsonResponse({"msg": "Import successfully."}, status=200)
 
 
 def generate_file(request):
     if request.method == "GET":
-        orders = list(Order.objects.all().values("pk"))
         list_of_answers = []
+
+        orders = list(Order.objects.all().values("pk"))
+
         top_five_customers = list(
             Customer.objects.annotate(order=Count("order_customer"))
             .order_by(("-order"))[:5]
             .values("id", "order")
         )
+
         unused_barcodes = Barcode.objects.filter(order=None).count()
+
         for order in orders:
             barcodes = list(
                 Order.objects.annotate().values("barcode_order").filter(pk=order["pk"])
@@ -51,7 +55,7 @@ def generate_file(request):
                 Order.objects.annotate().filter(pk=order["pk"]).values("customer", "pk")
             )
 
-            list_of_answers.append(str(customer_id + barcodes))
+            list_of_answers.append(str([*customer_id, *barcodes]))
 
         final_answer = [re.findall(r"\d+", answer) for answer in list_of_answers]
 

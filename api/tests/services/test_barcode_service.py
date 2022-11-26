@@ -18,4 +18,3 @@ class TestBarcodeService(TestCase):
         barcode = Barcode.objects.filter(pk=self.barcode_data["barcode"])
 
         self.assertIsNotNone(barcode)
-
