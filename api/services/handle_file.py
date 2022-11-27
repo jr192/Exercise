@@ -25,13 +25,21 @@ class HandleFile:
         validated_data = []
         for line in file:
             if line_count != 0:
-                if line in seen or line.decode("utf-8").split(",")[1] == "\n":
+                if line.decode("utf-8").split(",")[0] in seen:
                     print(
-                        "Repeated values or order's without barcode!",
+                        "Repeated barcodes!",
                         line.decode("utf-8").split(","),
                     )
+                elif line.decode("utf-8").split(",")[1] == "\n":
+                    seen.add(line.decode("utf-8").split(",")[0])
+                    validated_data.append(
+                        {
+                            "barcode": int(line.decode("utf-8").split(",")[0]),
+                            "order_id": None,
+                        }
+                    )
                 else:
-                    seen.add(line)
+                    seen.add(line.decode("utf-8").split(",")[0])
                     validated_data.append(
                         {
                             "barcode": int(line.decode("utf-8").split(",")[0]),
