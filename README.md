@@ -1,4 +1,26 @@
 # Exercise
+Using 2 datasets, one contains orders from customers and another contains barcodes (with an order_id if they are sold).
+To print the tickets vouchers we need a csv file with all the barcodes and orders_ids per customer.
+I writed a program that reads these two files, orders.csv and barcodes.csv, and generates an output file that contains the following data:
+customer_id, order_id1, [barcode1, barcode2, ...] 
+customer_id, order_id2, [barcode1, barcode2, ...]
+
+Features added:
+ ● The top 5 customers that bought the most amount of tickets.
+ ● Print the amount of unused barcodes (barcodes left)
+
+orders.csv
+order_id, customer_id
+This contains a list of orders. order_id is unique.
+
+barcodes.csv
+barcode, order_id
+The barcodes. If a barcode has been sold, it’s assigned to an order using order_id, otherwise order_id is empty.
+
+Validation:
+● No duplicate barcodes
+● No orders without barcodes
+Items which failed the validation are logged (e.g. stderr) and ignored for the output.
 
 The requests collections used are on [Tiqets.postman_collection.json] file.
 
